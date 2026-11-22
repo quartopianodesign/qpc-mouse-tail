@@ -84,4 +84,4 @@ Su CodePen gli SVG arrivano da questo repo via jsDelivr (`dir` nello script di `
 
 ## Licenza
 
-Codice MIT. Gli archetipi sono parte dell'identità di Quarto Piano Comunicazione. Font: Syne (SIL Open Font License), da Google Fonts.
+Codice MIT. Gli archetipi sono parte dell'identità di Quarto Piano Comunicazione. Font: Inter (SIL Open Font License), da Google Fonts.
