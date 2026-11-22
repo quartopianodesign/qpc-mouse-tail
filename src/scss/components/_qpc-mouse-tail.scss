@@ -17,10 +17,27 @@
     margin: 0;
     padding: 0 1rem;
     font-family: "Inter", sans-serif;
-    font-size: clamp(2.5rem, 7vw, 7rem);
     line-height: 1.05;
     text-align: center;
     user-select: none;
+    span { 
+      display: block;
+       &:first-child { font-weight: 700; }
+     }
+
+    // solo dove text-fit funziona (oggi Chrome/Edge): gli altri scartano il blocco
+    @supports (text-fit: grow) {
+      width: 80%;
+      span {
+        text-fit: grow; 
+      }
+    }
+
+    // tutti gli altri: dove c'è text-fit il font-size non viene valorizzato
+    @supports not (text-fit: grow) {
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      @media (max-width: 1024px) { font-size: clamp(1.5rem, 3vw, 3vw); }
+    }
   }
 
   // l'icona info segue il colore del testo
