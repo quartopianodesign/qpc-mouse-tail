@@ -1,0 +1,53 @@
+@use '../abstracts/variables' as *;
+
+// mouse tail: la sezione a tutta altezza, con il fondo che attraversa la palette
+.qpc-mouse-tail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $corallo;
+  color: $chiaro;
+  // fondo e testo cambiano insieme: il testo resta leggibile anche su giallo e verde
+  animation: qpc-mouse-tail-bg 40.5s cubic-bezier(.45, 0, .2, 1) infinite;
+
+  p {
+    margin: 0;
+    padding: 0 1rem;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(2.5rem, 7vw, 7rem);
+    line-height: 1.05;
+    text-align: center;
+    user-select: none;
+  }
+
+  // l'icona info segue il colore del testo
+  .qpc-info__toggle { color: inherit; }
+
+  // gli archetipi che cadono: x e y di GSAP partono dall'angolo in alto a sinistra
+  &__media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // fermo sul corallo: niente fondo che cambia (e in JS niente cadute)
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+// 7 colori a passo uguale (100 / 7): il corallo apre e chiude il giro, così
+// dura quanto gli altri; senza 0% e 100% espliciti, e con un tratto fermo
+// in apertura, restava acceso molto più a lungo
+@keyframes qpc-mouse-tail-bg {
+  0%, 100% { background-color: $corallo; color: $chiaro; }
+  14.28% { background-color: $indaco; color: $chiaro; }
+  28.57% { background-color: $nero; color: $chiaro; }
+  42.85% { background-color: $giallo; color: $scuro; }
+  57.14% { background-color: $verde; color: $scuro; }
+  71.42% { background-color: $blu; color: $chiaro; }
+  85.71% { background-color: $magenta; color: $chiaro; }
+}
